@@ -25,7 +25,7 @@ def favorite():
 @app.route('/feedback', methods=['POST'])
 def feedback():
     name = request.form['name']
-    if len(name) < 3 or not re.match(r'^[A-Za-zА-Яа-яЁё\'\-\s]{2,50}$', name):
+    if len(name) < 5 or not re.match(r'^[A-Za-zА-Яа-яЁё]{2,}(?:\s+[A-Za-zА-Яа-яЁё]{2,})+$', name):
         flash('Введите корректные фамилию и имя')
         return render_template('favorite.html')
     tel = request.form['tel']
