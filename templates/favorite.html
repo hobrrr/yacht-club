@@ -110,9 +110,18 @@
           </li>
         </ul>
         <div class="rent-form">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
       <form action="/feedback" method="post" class="form-style">
-        <input type="text" name="name" id="name" placeholder="Имя" class="form-item">
-        <input type="tel" name="tel" id="tel" placeholder="Номер телефона" class="form-item">
+        <input type="text" name="name" id="name" placeholder="Фамилия и имя" class="form-item" required>
+        <input type="tel" name="tel" id="tel" placeholder="Номер телефона" class="form-item" required>
         <input type="datetime-local" id="datetime" name="datetime" min="2025-05-1T09:00" max="2025-08-29T20:00" class="form-item" required>
         <button type="submit" class="form-button">Отправить</button>
       </form>
